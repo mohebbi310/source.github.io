@@ -1,0 +1,57 @@
+
+  <div class="text-center mt-3">
+    <h2>دوستان شما - {{pagination.totalItems}} تا پیدا شد</h2>
+  </div>
+
+<div class="container mt-5"> 
+    
+        <form class="form-inline" #form="ngForm" (ngSubmit)="loadUsers()" novalidate>
+            <div class="row">
+
+                <div class="form-group col-lg-2 col-sm-12">
+                    <label for="firstName"> نام </label>
+                    <input type="text" class="form-control col-lg-7 col-sm-12" id="firstName" name="firstName"
+                    [(ngModel)]="userParams.firstName">
+                  </div>
+
+                  <div class="form-group col-lg-2 col-sm-12">
+                      <label for="lastName"> فامیل </label>
+                      <input type="text" class="form-control col-lg-7 col-sm-12" id="lastName" name="lastName"
+                      [(ngModel)]="userParams.lastName">
+                    </div>
+          <div class="form-group col-lg-2 col-sm-12">
+            <label for="mobileNumber">موبایل</label>
+            <input type="number" class="form-control col-lg-7 col-sm-12" id="mobileNumber" name="mobileNumber"
+            [(ngModel)]="userParams.mobileNumber">
+          </div>
+    
+          <div class="form-group col-lg-2 col-sm-12">
+            <label for="nationalCode"> کد ملی </label>
+            <input type="text" class="form-control col-lg-7 col-sm-12" id="nationalCode" name="nationalCode"
+            [(ngModel)]="userParams.nationalCode">
+          </div>
+          <div class="form-group col-lg-2 col-sm-12">
+          <button type="submit" class="btn btn-primary col-sm-4">تایید</button>
+          <button type="button" class="btn btn-info col-sm-8" (click)="resetFilters()">تنظیم مجدد</button>
+        </div>
+        </div>
+        </form>
+      
+      <br>
+    
+  <div class="row">
+    <div *ngFor="let user of users" class="col-lg-2 col-md-3 col-sm-6">
+      <app-member-card [user]="user"></app-member-card>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center">
+  <pagination [boundaryLinks]="true" 
+  [totalItems]="pagination.totalItems"
+  [itemsPerPage]="pagination.itemsPerPage"
+  [(ngModel)]="pagination.currentPage"
+  (pageChanged)="pageChanged($event)"
+  previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+</pagination>
+</div>
